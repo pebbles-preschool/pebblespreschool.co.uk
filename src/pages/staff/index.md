@@ -1,5 +1,6 @@
 ---
 templateKey: staff-page
+path: /staff
 title: Staff
 staff:
   - description: >-

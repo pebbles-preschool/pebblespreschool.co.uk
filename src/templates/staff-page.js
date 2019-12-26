@@ -4,7 +4,7 @@ import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
 
-export const StaffPageTemplate = ({ title, content, contentComponent }) => {
+export const StaffPageTemplate = ({ title, staff, content, contentComponent }) => {
   const PageContent = contentComponent || Content;
 
   return (
@@ -17,6 +17,11 @@ export const StaffPageTemplate = ({ title, content, contentComponent }) => {
                 {title}
               </h2>
               <PageContent className="content" content={content} />
+              {staff && (
+                <ul>
+                  staff.map((item) => <li key={item.name}>{item.name}</li>)
+                </ul>
+              )}
             </div>
           </div>
         </div>
@@ -27,6 +32,7 @@ export const StaffPageTemplate = ({ title, content, contentComponent }) => {
 
 StaffPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
+  staff: PropTypes.array,
   content: PropTypes.string,
   contentComponent: PropTypes.func
 };
@@ -37,9 +43,10 @@ const StaffPage = ({ data }) => {
   return (
     <Layout>
       <StaffPageTemplate
-        contentComponent={HTMLContent}
         title={post.frontmatter.title}
+        staff={post.frontmatter.staff}
         content={post.html}
+        contentComponent={HTMLContent}
       />
     </Layout>
   );
@@ -57,6 +64,12 @@ export const staffPageQuery = graphql`
       html
       frontmatter {
         title
+        staff {
+          name
+          role
+          startDate
+          description
+        }
       }
     }
   }
