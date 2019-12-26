@@ -13,13 +13,13 @@ export const StaffPageTemplate = ({ title, staff, content, contentComponent }) =
         <div className="columns">
           <div className="column is-10 is-offset-1">
             <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
+              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">{title}</h2>
               <PageContent className="content" content={content} />
               {staff && (
                 <ul>
-                  staff.map((item) => <li key={item.name}>{item.name}</li>)
+                  {staff.map(item => (
+                    <li key={item.name}>{item.name}</li>
+                  ))}
                 </ul>
               )}
             </div>
@@ -31,10 +31,22 @@ export const StaffPageTemplate = ({ title, staff, content, contentComponent }) =
 };
 
 StaffPageTemplate.propTypes = {
+  content: PropTypes.string.isRequired,
+  contentComponent: PropTypes.func,
+  staff: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      role: PropTypes.string,
+      startDate: PropTypes.string,
+      decription: PropTypes.string,
+    })
+  ),
   title: PropTypes.string.isRequired,
-  staff: PropTypes.array,
-  content: PropTypes.string,
-  contentComponent: PropTypes.func
+};
+
+StaffPageTemplate.defaultProps = {
+  contentComponent: undefined,
+  staff: [],
 };
 
 const StaffPage = ({ data }) => {
@@ -53,7 +65,9 @@ const StaffPage = ({ data }) => {
 };
 
 StaffPage.propTypes = {
-  data: PropTypes.object.isRequired
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.object,
+  }).isRequired,
 };
 
 export default StaffPage;
