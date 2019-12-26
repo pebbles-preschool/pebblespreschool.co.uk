@@ -33,6 +33,7 @@ collections:
       - file: "src/pages/index.md"
         label: "Landing Page"
         name: "index"
+        delete: false
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "index-page"}
           - {label: Title, name: title, widget: string}
@@ -53,6 +54,7 @@ collections:
       - file: "src/pages/staff/index.md"
         label: "Staff"
         name: "staff"
+        delete: false
         fields:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "staff-page"}
           - {label: "Title", name: "title", widget: "string"}
