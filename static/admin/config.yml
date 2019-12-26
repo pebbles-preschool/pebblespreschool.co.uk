@@ -50,6 +50,21 @@ collections:
           - {label: "Template Key", name: "templateKey", widget: "hidden", default: "about-page"}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Body", name: "body", widget: "markdown"}
+      - file: "src/pages/staff/index.md"
+        label: "Staff"
+        name: "staff"
+        fields:
+          - {label: "Template Key", name: "templateKey", widget: "hidden", default: "staff-page"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Body", name: "body", widget: "markdown"}
+          - label: "Staff"
+            name: "staff"
+            widget: "list"
+            fields:
+              - {label: Name, name: name, widget: string}
+              - {label: Role, name: role, widget: string}
+              - {label: Start Date, name: startDate, widget: datetime, format: MMMM YYYY, dateFormat: MMMM YYYY, timeFormat: false}
+              - {label: Description, name: description, widget: markdown, buttons: [bold, italic, link]}
       - file: "src/pages/products/index.md"
         label: "Products Page"
         name: "products"
