@@ -1,20 +1,22 @@
 import React from 'react';
+import { ThemeProvider, CSSReset } from '@chakra-ui/core';
 import { Helmet } from 'react-helmet';
+import { withPrefix } from 'gatsby';
+import Header from './Header';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import './all.sass';
 import useSiteMetadata from './SiteMetadata';
-import { withPrefix } from 'gatsby';
+import theme from '../theme';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Helmet>
+        <CSSReset />
         <html lang="en" />
         <title>{title}</title>
         <meta name="description" content={description} />
-
         <link
           rel="apple-touch-icon"
           sizes="180x180"
@@ -45,10 +47,11 @@ const TemplateWrapper = ({ children }) => {
         <meta property="og:url" content="/" />
         <meta property="og:image" content={`${withPrefix('/')}img/og-image.jpg`} />
       </Helmet>
+      <Header />
       <Navbar />
       <div>{children}</div>
       <Footer />
-    </div>
+    </ThemeProvider>
   );
 };
 
