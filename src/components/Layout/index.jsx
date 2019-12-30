@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Helmet from 'react-helmet';
 import { Box, Grommet } from 'grommet';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
@@ -23,6 +24,12 @@ const Layout = ({ children }) => {
       `}
       render={data => (
         <Grommet theme={theme} full>
+          <Helmet>
+            <link
+              href="https://fonts.googleapis.com/css?family=Indie+Flower|Quicksand:400,600&display=swap"
+              rel="stylesheet"
+            />
+          </Helmet>
           <GlobalStyles />
           <Sidebar isOpen={isSidebarOpen} closeHandler={() => setSidebarOpen(false)} />
           <Box pad={{ top: '60px' }} style={{ minHeight: '100vh' }}>
